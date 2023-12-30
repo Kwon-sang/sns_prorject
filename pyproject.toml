@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "sns-project"
+version = "0.1.0"
+description = ""
+authors = ["Kwon Sang <kwonsg514@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "4.0"
+django-bootstrap-v5 = "^1.0.11"
+
+
+[tool.poetry.group.dev.dependencies]
+django-debug-toolbar = "^4.2.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

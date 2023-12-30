@@ -1,0 +1,33 @@
+{% load static %}
+{% load bootstrap5 %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <meta charset="UTF-8">
+    <title>SNS Project</title>
+</head>
+
+<body>
+<div class="container my-3">
+    <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+        <a href="/" class="d-flex align-items-center link-body-emphasis text-decoration-none">
+            <span class="fs-4">Social Network App</span>
+        </a>
+
+        <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+            <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Search</a>
+            <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Feed</a>
+            <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Profile</a>
+        </nav>
+    </div>
+</div>
+
+{% block content %}
+    Contents
+{% endblock content%}
+
+</body>
+</html>
