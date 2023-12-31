@@ -11,6 +11,13 @@
 </head>
 
 <body>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}"> {{ message }} </div>
+    {% endfor %}
+{% endif %}
+
 <div class="container my-3">
     <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
         <a href="/" class="d-flex align-items-center link-body-emphasis text-decoration-none">
@@ -27,7 +34,7 @@
 
 {% block content %}
     Contents
-{% endblock content%}
+{% endblock content %}
 
 </body>
 </html>
