@@ -20,3 +20,8 @@ class UserSignupForm(UserCreationForm):
             if User.objects.filter(email=email):
                 raise forms.ValidationError('이미 등록된 이메일 입니다.')
 
+
+class UserProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['profile_image', 'first_name', 'last_name', 'website_url', 'bio']

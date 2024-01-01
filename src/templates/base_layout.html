@@ -25,9 +25,14 @@
         </a>
 
         <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-            <!-- Login User Profile -->
+            <!-- Login User Info -->
             {% if user.is_authenticated %}
-                <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">{{ user }}</a>
+                <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url "profile_edit" %}">
+                    {% if user.profile_image %}
+                        <img src="/media/{{ user.profile_image }}" height="30px" style="border-radius: 50%;">
+                    {% endif %}
+                    {{ user }}
+                </a>
             {% endif %}
             <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Search</a>
             <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Feed</a>
