@@ -44,6 +44,10 @@ def profile_edit(request):
 
 
 class CustomPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
-    success_url = reverse_lazy('password_change')
+    success_url = reverse_lazy('login')
     template_name = 'accounts/password_change_form.html'
+
+    def form_valid(self, form):
+        messages.success(self.request, '비밀번호가 변경되었습니다.')
+        return super().form_valid(form)
 
