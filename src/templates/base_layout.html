@@ -25,9 +25,12 @@
         </a>
 
         <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+            <!-- Login User Profile -->
+            {% if user.is_authenticated %}
+                <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">{{ user }}</a>
+            {% endif %}
             <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Search</a>
             <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Feed</a>
-            <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Profile</a>
         </nav>
     </div>
 </div>
