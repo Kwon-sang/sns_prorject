@@ -21,6 +21,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # My Apps
     'accounts',
+    'post',
     # Default Apps
     'django.contrib.admin',
     'django.contrib.auth',
