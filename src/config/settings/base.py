@@ -21,7 +21,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # My Apps
     'accounts',
-    'post',
+    'posts',
     # Default Apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'bootstrap5',
     'crispy_forms',
     'crispy_bootstrap4',
+    'taggit',
 ]
 
 MIDDLEWARE = [
