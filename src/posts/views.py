@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import get_user_model
 
 from .forms import Post, PostForm
 
@@ -21,11 +22,17 @@ def post_create(request):
     return render(request, 'posts/post_create_form.html', {'form': form})
 
 
-def post_list(request):
-    pass
+def post_list(request, username):
+    user = get_object_or_404(get_user_model(), username=username)
+    posts = Post.objects.filter(author=user.id)
+    all_tags = []
+    for post in posts:
+        all_tags += post.tags.all()
+    return render(request, 'user/userpage.html', {'posts': posts,
+                                                  'username': username,
+                                                  'all_tags': all_tags})
+
 
 def post_detail(request, id):
     post = get_object_or_404(Post, id=id)
     return render(request, 'posts/post_detail.html', {'post': post})
-
-
