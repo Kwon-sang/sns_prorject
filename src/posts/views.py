@@ -42,11 +42,27 @@ def post_create(request):
 
 @login_required
 def post_delete(request, id):
-    post = Post.objects.get(id=id)
+    post = get_object_or_404(Post, id=id)
     if post.is_author(request):
         post.photo.delete()
         post.delete()
         messages.success(request, '삭제 되었습니다.')
     else:
-        messages.error(request, '삭제 권한이 없습니다.')
+        messages.warning(request, '삭제 권한이 없습니다.')
+    return redirect('posts:post_list')
+
+
+@login_required
+def post_update(request, id):
+    post = get_object_or_404(Post, id=id)
+    if post.is_author(request):
+        if request.method == 'POST':
+            form = PostForm(data=request.POST, instance=post)
+            if form.is_valid():
+                messages.success(request, '수정 하였습니다.')
+                form.save()
+        else:
+            form = PostForm(instance=post)
+            return render(request, 'posts/post_update_form.html', context={'form': form})
+    messages.warning(request, '수정 권한이 없습니다.')
     return redirect('posts:post_list')

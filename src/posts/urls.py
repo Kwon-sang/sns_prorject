@@ -9,6 +9,5 @@ urlpatterns = [
     path('', PostListView.as_view(), name='post_list'),
     path('create/', views.post_create, name='post_create'),
     path('delete/<int:id>/', views.post_delete, name='post_delete'),
-    # path('update/<int:id>/', views.post_update, name='post_update'),
-    # path('<int:id>/', views.post_detail, name='post_detail'),
+    path('update/<int:id>/', views.post_update, name='post_update'),
 ]

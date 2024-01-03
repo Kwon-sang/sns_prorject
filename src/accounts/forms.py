@@ -24,4 +24,4 @@ class UserSignupForm(UserCreationForm):
 class UserProfileEditForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['profile_image', 'first_name', 'last_name', 'website_url', 'bio']
+        fields = ['profile_image', 'first_name', 'last_name', 'email', 'website_url', 'bio']
