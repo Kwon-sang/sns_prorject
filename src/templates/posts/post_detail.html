@@ -1,3 +1,50 @@
-{% block content %}
-    {% include 'posts/base_post_detail.html' %}
-{% endblock %}
+<script>
+    function deleteConfirm(url) {
+        const state = confirm("삭제 하시겠습니까?");
+        if (state) {
+            location.href = url;
+        }
+    }
+</script>
+
+<div class="card">
+    <!-- CARD HEADER -->
+    <div class="card-header" style="background-color: #87AFEB">
+        <span style="font-style: italic; color: aliceblue;">
+            Posted at {{ post.created_at|date }} by
+            <a href="{% url 'posts:post_list' %}"
+               style="text-decoration: none">{{ post.author.username }}</a>
+        </span>
+        {% if post.created_at != post.updated_at %}
+            <span class="float-end" style="font-size:15px; color:#c8c8c8 ">수정됨</span>
+        {% endif %}
+        {% if user == post.author %}
+            <div class="btn-group float-end">
+                <button class="btn btn-group btn-primary">수정</button>
+                <button class="btn btn-group btn-danger"
+                        onclick="deleteConfirm('{% url "posts:post_delete" post.id %}')">삭제
+                </button>
+            </div>
+        {% endif %}
+    </div>
+    <!-- CARD BODY -->
+    <div class="card-body">
+        <div class="row justify-content-center">
+            <img src="/media/{{ post.photo }}" style="width: fit-content; border-radius: 3%">
+        </div>
+        <div class="row">
+            <p class="pt-3">{{ post.caption|linebreaksbr }}</p>
+        </div>
+    </div>
+    <!-- CARD FOOTER -->
+    {% if post.tags.all %}
+        <div class="card-footer" style="background-color: #EBF5FF">
+            {% for tag in post.tags.all %}
+                <a href="#" style="text-decoration: none"><span
+                        style="font-weight: bolder; ">#{{ tag }}</span></a>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+
+

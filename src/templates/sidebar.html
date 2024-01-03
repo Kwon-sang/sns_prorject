@@ -1,0 +1,27 @@
+<div class="container d-flex justify-content-end">
+    <div class="btn-group">
+        <a href="{% url 'profile_edit' %}" class="btn btn-secondary" style="text-decoration: none">Edit Profile</a>
+        <a href="{% url 'password_change' %}" class="btn btn-secondary" style="text-decoration: none">Change Password</a>
+    </div>
+
+</div>
+
+<div class="card my-3">
+    <div class="card-header text-center">
+        <b>My</b>
+    </div>
+    <div class="card-body">
+        <p>Total upload posting : {{ post_list.count }}</p>
+        <hr>
+        <p>{{ user.bio|linebreaksbr }}</p>
+        <p>(Website URL) {{ user.website_url }}</p>
+        <p>(Email) {{ user.email }}</p>
+        <hr>
+        <p>
+            My tags :
+            {% for tag in tags %}
+
+            {% endfor %}
+        </p>
+    </div>
+</div>

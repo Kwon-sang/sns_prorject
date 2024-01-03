@@ -2,8 +2,26 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
+from django.views.generic import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import Post, PostForm
+
+
+class PostListView(LoginRequiredMixin, ListView):
+    model = Post
+    template_name = 'posts/post_list.html'
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        username = self.request.GET.get('username')
+        tag = self.request.GET.get('tag')
+        if username:
+            qs = qs.filter(author__username=username)
+            if tag:
+                qs = qs.filter(tags__name__in=tag)
+            return qs
+        return qs
 
 
 @login_required
@@ -22,17 +40,13 @@ def post_create(request):
     return render(request, 'posts/post_create_form.html', {'form': form})
 
 
-def post_list(request, username):
-    user = get_object_or_404(get_user_model(), username=username)
-    posts = Post.objects.filter(author=user.id)
-    all_tags = []
-    for post in posts:
-        all_tags += post.tags.all()
-    return render(request, 'user/userpage.html', {'posts': posts,
-                                                  'username': username,
-                                                  'all_tags': all_tags})
-
-
-def post_detail(request, id):
-    post = get_object_or_404(Post, id=id)
-    return render(request, 'posts/post_detail.html', {'post': post})
+@login_required
+def post_delete(request, id):
+    post = Post.objects.get(id=id)
+    if post.is_author(request):
+        post.photo.delete()
+        post.delete()
+        messages.success(request, '삭제 되었습니다.')
+    else:
+        messages.error(request, '삭제 권한이 없습니다.')
+    return redirect('posts:post_list')

@@ -1,3 +1,20 @@
-{% for post in posts %}
-    {% include "posts/base_post_detail.html" with post=post %}
-{% endfor %}
+{% extends 'base_layout.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 ms-5 my-2">
+                {% for post in post_list %}
+                    <div class="my-3">
+                        {% include "posts/post_detail.html" with post=post %}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col">
+                {% include 'sidebar.html' %}
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

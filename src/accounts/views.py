@@ -23,8 +23,7 @@ def signup(request):
             user = form.save()
             auth_login(request, user=user)
             messages.success(request, '회원가입을 환영합니다.')
-            next_url = request.GET.get('next', '/')
-            return redirect(next_url)
+            return redirect('/')
     else:
         form = UserSignupForm()
     return render(request, 'accounts/signup_form.html', {'form': form})

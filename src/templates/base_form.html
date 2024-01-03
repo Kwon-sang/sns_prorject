@@ -1,19 +1,13 @@
 {% load crispy_forms_tags %}
 
 {# This Form style is Card, and has parameter 'title' and 'width' #}
-<div class="container">
-    <div class="row justify-content-md-center">
-        <div class="col-sm-{{ width }}">
-            <div class="card">
-                <div class="card-header fw-bold text-center">{{ title }}</div>
-                <div class="card-body">
-                    <form action="" method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {{ form | crispy }}
-                        <button class="btn btn-success mt-3 float-end" type="submit">{{ title }}</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+<div class="card">
+    <div class="card-header fw-bold text-center">{{ title }}</div>
+    <div class="card-body">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form | crispy }}
+            <button class="btn btn-success mt-3 float-end" type="submit">{{ title }}</button>
+        </form>
     </div>
 </div>

@@ -130,7 +130,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Auth Settings
 AUTH_USER_MODEL = 'accounts.User'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/posts'
 
 
 # Django Crispy Form
