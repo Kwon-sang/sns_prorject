@@ -1,4 +1,4 @@
-# **Django SNS Toy Project**
+# 💻**Django SNS Toy Project**
 
 This project is my Social Network Service toy project by Django.
 In making this project, I was able to practice of Django to deal with it's framwork some well.<br>
