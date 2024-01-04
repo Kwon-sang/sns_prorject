@@ -60,7 +60,7 @@ And, Applying front-end framework like React to cool webpage, It is so nice and 
 
 <br>
 
-## 4. Some logics considered
+## 4. Some Logics Considered
 
 1. **How to implement posting list by user or tag?**
   - I implements this, by URL query string. And override `get_queryset` in `ListTempleteView`
