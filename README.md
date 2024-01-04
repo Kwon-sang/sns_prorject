@@ -7,7 +7,7 @@ And, Applying front-end framework like React to cool webpage, It is so nice and 
 
 <br>
 
-## Contents
+### Contents
 > 1. Project Set-up
 > 2. Project Structure
 > 3. Features
