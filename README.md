@@ -85,7 +85,7 @@ And, Applying front-end framework like React to cool webpage, It is so nice and 
 
 2. **How to implement tag searching system?**
     - The models relations like,  `User` 1---N `Post` M---N `tags`.
-    - I add function to `User` model to collecting all one users tags.
+    - I add function to `User` model to collect all one users tags.
 
  // In User model
 ```
@@ -96,7 +96,9 @@ And, Applying front-end framework like React to cool webpage, It is so nice and 
             for tag in tags:
                 tags_counter[tag] += 1
         return tags_counter.items()
-```  
+```
+ 
+<br>
 
 ## 5. Image Examples of Website
 <details>
