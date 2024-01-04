@@ -1,5 +1,10 @@
 # Django SNS Toy Project
----
+
+> This project is my Social Network Service toy project by Django.<br>
+> In making this project, I was able to practice of Django to deal with it's framwork some well.<br>
+> Beside this projcet, Furthermore, I would be some study with considering to qeury performance optimization like select or prefetched relation features.<br>
+> And, Applying front-end framework like React to cool webpage, It is so nice and interesting one.<br>
+
 
 ## Contents
 > 1. Project set-up
