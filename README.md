@@ -8,11 +8,11 @@ And, Applying front-end framework like React to cool webpage, It is so nice and 
 <br>
 
 ## Contents
-> 1. Project set-up
-> 2. Project structure
+> 1. Project Set-up
+> 2. Project Structure
 > 3. Features
-> 4. Some logics considered
-> 5. Image examples of website
+> 4. Some Logics Considered
+> 5. Image Examples of Website
 
 <br>
 
@@ -20,7 +20,7 @@ And, Applying front-end framework like React to cool webpage, It is so nice and 
 
 <br>
 
-## 1. Project set-up
+## 1. Project Set-up
 - IDE : **pycharm**(professional)
 - Python version control manager : **pyenv** (python version 3.10)
 - Dependency control manager : **poetry**
@@ -28,7 +28,7 @@ And, Applying front-end framework like React to cool webpage, It is so nice and 
 
 <br>
 
-## 2. Project structure
+## 2. Project Structure
 - project root
   - .git
   - poetry file
@@ -98,7 +98,7 @@ And, Applying front-end framework like React to cool webpage, It is so nice and 
         return tags_counter.items()
 ```  
 
-## 5. Image examples of website
+## 5. Image Examples of Website
 <details>
   <summary>Login page</summary>
 
