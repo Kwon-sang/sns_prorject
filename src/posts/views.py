@@ -12,14 +12,24 @@ class PostListView(LoginRequiredMixin, ListView):
     model = Post
     template_name = 'posts/post_list.html'
 
+    def get_context_data(self, *args, **kwargs):
+        user = self.request.user
+        user_tags_all = user.get_tags_all()
+        context = super().get_context_data(*args, **kwargs)
+        context['user_tags_all'] = user_tags_all
+        return context
+
     def get_queryset(self):
         qs = super().get_queryset()
         username = self.request.GET.get('username')
         tag = self.request.GET.get('tag')
+        print(tag)
         if username:
             qs = qs.filter(author__username=username)
+            print(qs)
             if tag:
-                qs = qs.filter(tags__name__in=tag)
+                qs = qs.filter(tags__name__in=[tag])
+                print(tag)
             return qs
         return qs
 

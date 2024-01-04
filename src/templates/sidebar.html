@@ -19,8 +19,13 @@
         <hr>
         <p>
             My tags :
-            {% for tag in tags %}
-
+            {{ user_tags_all.items }}
+            {% for tag, count in user_tags_all %}
+                <span>
+                    <a href="{% url 'posts:post_list' %}?username={{ user.username }}&tag={{ tag.name }}" style="text-decoration: none">
+                        #{{ tag.name }}({{ count }})
+                    </a>
+                </span>
             {% endfor %}
         </p>
     </div>

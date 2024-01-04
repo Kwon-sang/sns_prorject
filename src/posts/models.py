@@ -34,6 +34,7 @@ class Post(TimeStampMixin, models.Model):
         return request.user.id is self.author.id
 
 
+
 class Comment(TimeStampMixin, models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     post = models.ForeignKey('Post', on_delete=models.CASCADE)
