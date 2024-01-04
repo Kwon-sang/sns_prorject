@@ -63,8 +63,8 @@ And, Applying front-end framework like React to cool webpage, It is so nice and 
 ## 4. Some Logics Considered
 
 1. **How to implement posting list by user or tag?**
-  - I implements this, by URL query string. And override `get_queryset` in `ListTempleteView`
-  - Through this, I can be to improve list template reusability.
+    - I implements this, by URL query string. And override `get_queryset` in `ListTempleteView`
+    - Through this, I can be to improve list template reusability.
 
 // In PostListView
 ```
@@ -84,8 +84,8 @@ And, Applying front-end framework like React to cool webpage, It is so nice and 
 ```
 
 2. **How to implement tag searching system?**
-  - The models relations like,  `User` 1---N `Post` M---N `tags`.
-  - I add function to `User` model to collecting all one users tags.
+    - The models relations like,  `User` 1---N `Post` M---N `tags`.
+    - I add function to `User` model to collecting all one users tags.
 
  // In User model
 ```
