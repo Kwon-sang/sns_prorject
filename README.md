@@ -66,20 +66,22 @@ And, Applying front-end framework like React to cool webpage, It is so nice and 
     - I implements this, by URL query string. And override `get_queryset` in `ListTempleteView`
     - Through this, I can be to improve list template reusability.
 
-[PostListView]
 ```
-    def get_queryset(self):
-        qs = super().get_queryset()
-        username = self.request.GET.get('username')
-        tag = self.request.GET.get('tag')
-        print(tag)
-        if username:
-            qs = qs.filter(author__username=username)
-            print(qs)
-            if tag:
-                qs = qs.filter(tags__name__in=[tag])
-            return qs
-        return qs
+class PostListView(LoginRequiredMixin, ListView):
+  ...
+  def get_queryset(self):
+      qs = super().get_queryset()
+      username = self.request.GET.get('username')
+      tag = self.request.GET.get('tag')
+      print(tag)
+      if username:
+          qs = qs.filter(author__username=username)
+          print(qs)
+          if tag:
+              qs = qs.filter(tags__name__in=[tag])
+          return qs
+      return qs
+  ...
 ```
 
 2. **How to implement tag searching system?**
@@ -87,16 +89,18 @@ And, Applying front-end framework like React to cool webpage, It is so nice and 
     - I add custom function to `Post` model to collect all tags of user.
     - For query optimization, I use `select_related` and `prefetch_related`.
 
- [Post model]
 ```
-    @classmethod
-    def get_all_tag_counts_by_author(cls, author) -> dict:
-        tags = []
-        post_qs = Post.objects.select_related('author').filter(author=author).prefetch_related('tags')
-        for post in post_qs:
-            tags += [tag.name for tag in post.tags.all()]
-        tag_counter = Counter(tags)
-        return dict(tag_counter)
+class Post(TimeStampMixin, models.Models):
+  ...
+  @classmethod
+  def get_all_tag_counts_by_author(cls, author) -> dict:
+      tags = []
+      post_qs = Post.objects.select_related('author').filter(author=author).prefetch_related('tags')
+      for post in post_qs:
+          tags += [tag.name for tag in post.tags.all()]
+      tag_counter = Counter(tags)
+      return dict(tag_counter)
+  ...
 ```
  
 <br>
