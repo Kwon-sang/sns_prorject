@@ -66,7 +66,7 @@ And, Applying front-end framework like React to cool webpage, It is so nice and 
     - I implements this, by URL query string. And override `get_queryset` in `ListTempleteView`
     - Through this, I can be to improve list template reusability.
 
-// In PostListView
+[PostListView]
 ```
     def get_queryset(self):
         qs = super().get_queryset()
@@ -78,24 +78,25 @@ And, Applying front-end framework like React to cool webpage, It is so nice and 
             print(qs)
             if tag:
                 qs = qs.filter(tags__name__in=[tag])
-                print(tag)
             return qs
         return qs
 ```
 
 2. **How to implement tag searching system?**
     - The models relations like,  `User` 1---N `Post` M---N `tags`.
-    - I add function to `User` model to collect all one users tags.
+    - I add custom function to `Post` model to collect all tags of user.
+    - For query optimization, I use `select_related` and `prefetch_related`.
 
- // In User model
+ [Post model]
 ```
-    def get_tags_all(self):
-        tags_counter = defaultdict(int)
-        for post in list(self.post_set.all()):
-            tags = post.tags.all()
-            for tag in tags:
-                tags_counter[tag] += 1
-        return tags_counter.items()
+    @classmethod
+    def get_all_tag_counts_by_author(cls, author) -> dict:
+        tags = []
+        post_qs = Post.objects.select_related('author').filter(author=author).prefetch_related('tags')
+        for post in post_qs:
+            tags += [tag.name for tag in post.tags.all()]
+        tag_counter = Counter(tags)
+        return dict(tag_counter)
 ```
  
 <br>
