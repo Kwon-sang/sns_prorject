@@ -1,5 +1,6 @@
 <div class="container d-flex justify-content-end">
     <div class="btn-group">
+        <a href="{% url "posts:post_create" %}" class="btn btn-primary">새 포스팅</a>
         <a href="{% url 'profile_edit' %}" class="btn btn-secondary" style="text-decoration: none">프로필수정</a></a>
         <a href="{% url 'password_change' %}" class="btn btn-secondary" style="text-decoration: none">비밀번호변경</a>
     </div>
@@ -20,10 +21,11 @@
         <p>
             My tags :
             {{ user_tags_all.items }}
-            {% for tag, count in user_tags_all %}
+            {% for tag_name, tag_count in user_all_tags.items %}
                 <span>
-                    <a href="{% url 'posts:post_list' %}?username={{ user.username }}&tag={{ tag.name }}" style="text-decoration: none">
-                        #{{ tag.name }}({{ count }})
+                    <a href="{% url 'posts:post_list' %}?username={{ user.username }}&tag={{ tag_name }}"
+                       style="text-decoration: none">
+                        #{{ tag_name }}({{ tag_count }})
                     </a>
                 </span>
             {% endfor %}

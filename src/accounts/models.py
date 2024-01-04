@@ -1,3 +1,4 @@
+import time
 from collections import defaultdict
 
 from django.db import models
@@ -16,12 +17,3 @@ class User(AbstractUser):
                 name='unique_in_store'
             ),
         )
-
-    def get_tags_all(self):
-        tags_counter = defaultdict(int)
-        for post in list(self.post_set.all()):
-            tags = post.tags.all()
-            for tag in tags:
-                tags_counter[tag] += 1
-        return tags_counter.items()
-

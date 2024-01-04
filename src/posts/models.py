@@ -1,3 +1,5 @@
+from collections import Counter
+
 from django.db import models
 from django.conf import settings
 from django.urls import reverse
@@ -33,6 +35,14 @@ class Post(TimeStampMixin, models.Model):
     def is_author(self, request):
         return request.user.id is self.author.id
 
+    @classmethod
+    def get_all_tag_counts_by_author(cls, author) -> dict:
+        tags = []
+        post_qs = Post.objects.select_related('author').filter(author=author).prefetch_related('tags')
+        for post in post_qs:
+            tags += [tag.name for tag in post.tags.all()]
+        tag_counter = Counter(tags)
+        return dict(tag_counter)
 
 
 class Comment(TimeStampMixin, models.Model):

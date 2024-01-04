@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.db.models import QuerySet
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
@@ -13,23 +14,19 @@ class PostListView(LoginRequiredMixin, ListView):
     template_name = 'posts/post_list.html'
 
     def get_context_data(self, *args, **kwargs):
-        user = self.request.user
-        user_tags_all = user.get_tags_all()
+        user_all_tags = Post.get_all_tag_counts_by_author(author=self.request.user)
         context = super().get_context_data(*args, **kwargs)
-        context['user_tags_all'] = user_tags_all
+        context['user_all_tags'] = user_all_tags
         return context
 
-    def get_queryset(self):
-        qs = super().get_queryset()
+    def get_queryset(self) -> QuerySet:
         username = self.request.GET.get('username')
         tag = self.request.GET.get('tag')
-        print(tag)
+        qs = super().get_queryset()
         if username:
             qs = qs.filter(author__username=username)
-            print(qs)
             if tag:
-                qs = qs.filter(tags__name__in=[tag])
-                print(tag)
+                qs = qs.filter(tags__name__contains=tag)
             return qs
         return qs
 
