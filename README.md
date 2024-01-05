@@ -105,7 +105,7 @@ class Post(TimeStampMixin, models.Models):
  
 <br>
 
-## 5. Image Examples of Website
+## 5. Image Examples of Website (Click to belows)
 <details>
   <summary>Login page</summary>
 
